@@ -5,7 +5,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
+# find dependencies, add several pkgs in one
 set(HW_IF_INCLUDE_DEPENDS
   pluginlib
   rcpputils
@@ -33,7 +33,6 @@ find_package(hardware_interface REQUIRED)
 find_package(controller_interface REQUIRED)
 find_package(control_msgs REQUIRED)
 
-# find dependencies
 find_package(backward_ros REQUIRED)
 find_package(ament_cmake REQUIRED)
 foreach(Dependency IN ITEMS ${HW_IF_INCLUDE_DEPENDS})
@@ -59,7 +58,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-
+#add the custom libraries
 add_library(
   quad_bot_controller
   SHARED
@@ -75,14 +74,8 @@ target_include_directories(quad_bot_controller PUBLIC
 $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/hardware/include>
 $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/controller/include>
 $<INSTALL_INTERFACE:include/quad_bot_controller>
-
-# ${control_msgs_INCLUDE_DIRS} 
-# ${hardware_interface_INCLUDE_DIRS}
-# ${unique_identifier_msgs_INCLUDE_DIRS}
-# ${rclcpp_INCLUDE_DIRS}
-# ${rclcpp_INCLUDE_DIRS}
-
 )
+
 ament_target_dependencies(
   quad_bot_controller PUBLIC
   ${HW_IF_INCLUDE_DEPENDS}
@@ -101,6 +94,7 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
+# export
 # ament_export_targets(export_ros2_control_demo_example_7 HAS_LIBRARY_TARGET)
 ament_export_dependencies(${HW_IF_INCLUDE_DEPENDS} ${REF_GEN_INCLUDE_DEPENDS} ${CONTROLLER_INCLUDE_DEPENDS})
 ament_package()
