@@ -90,7 +90,7 @@ pluginlib_export_plugin_description_file(controller_interface quad_bot_controlle
 
 #sub folders configuration
 install(
-  DIRECTORY config launch controller hardware
+  DIRECTORY config launch controller hardware ros2_control
   DESTINATION share/${PROJECT_NAME}
 )
 

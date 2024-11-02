@@ -21,7 +21,10 @@ from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
-    # package name
+    # control package
+    pkg_name_con = 'quad_bot_controller'
+
+    # description package name
     pkg_name = 'quad_bot_description'
 
     # Declare arguments
@@ -52,9 +55,10 @@ def generate_launch_description():
         ]
     )
     robot_description = {"robot_description": robot_description_content}
-
+    
+# get the config file directly from the controller pkg
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare(pkg_name), "config", "display.rviz"]
+        [FindPackageShare(pkg_name_con), "config", "display.rviz"]
     )
 
     joint_state_publisher_node = Node(

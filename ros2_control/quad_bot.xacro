@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="r6bot">
+
+  <!-- Import quad macro -->
+  <xacro:include filename="$(find quad_bot_description)/urdf/quad_bot.xacro"/>
+
+  <!-- create link fixed to the "world" -->
+  <link name="world"/>
+
+  <xacro:quad_bot/>
+
+  <!-- Import quad ros2_control description -->
+  <xacro:include filename="$(find quad_bot_controller)/ros2_control/quad.ros2_control.xacro" />
+  <xacro:quad_ros2_control name="quad"/>
+
+</robot>

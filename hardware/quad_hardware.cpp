@@ -27,14 +27,22 @@ CallbackReturn RobotSystem::on_init(const hardware_interface::HardwareInfo & inf
   }
 
   // robot has 6 joints and 2 interfaces
-  joint_position_.assign(6, 0);
-  joint_velocities_.assign(6, 0);
-  joint_position_command_.assign(6, 0);
-  joint_velocities_command_.assign(6, 0);
+  // joint_position_.assign(6, 0);
+  // joint_velocities_.assign(6, 0);
+  // joint_position_command_.assign(6, 0);
+  // joint_velocities_command_.assign(6, 0);
+
+  // robot has 8 joints and ? interfaces
+  joint_position_.assign(8, 0);
+  joint_velocities_.assign(8, 0);
+  joint_position_command_.assign(8, 0);
+  joint_velocities_command_.assign(8, 0);
 
   // force sensor has 6 readings
-  ft_states_.assign(6, 0);
-  ft_command_.assign(6, 0);
+  // ft_states_.assign(6, 0);
+  // ft_command_.assign(6, 0);
+  ft_states_.assign(8, 0);
+  ft_command_.assign(8, 0);
 
   for (const auto & joint : info_.joints)
   {
