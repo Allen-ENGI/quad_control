@@ -87,6 +87,8 @@ pluginlib_export_plugin_description_file(controller_interface quad_bot_controlle
 
 
 # INSTALL
+
+# add custom controller to library
 install(
   DIRECTORY hardware/include/
   DESTINATION include/quad_bot_controller
