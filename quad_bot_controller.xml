@@ -6,7 +6,6 @@
       Robot hardware plugin for quad robot
     </description>
   </class>
-  
   <class name="quad_bot_controller/RobotController"
          type="quad_bot_controller::RobotController"
          base_class_type="controller_interface::ControllerInterface">

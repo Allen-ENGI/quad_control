@@ -43,5 +43,7 @@
 
   <export>
     <build_type>ament_cmake</build_type>
+    <pluginlib plugin="${prefix}/quad_bot_controller.xml"/>
   </export>
+
 </package>

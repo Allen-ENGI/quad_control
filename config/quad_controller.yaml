@@ -1,0 +1,30 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 10  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    quad_controller:
+      type: quad_bot_controller/RobotController
+
+
+quad_controller:
+  ros__parameters:
+    joints:
+      - lr1
+      - lr2
+      - lr3
+      - lr4
+      - rr1
+      - rr2
+      - rr3
+      - rr4
+
+    command_interfaces:
+      - position
+      - velocity
+
+    state_interfaces:
+      - position
+      - velocity

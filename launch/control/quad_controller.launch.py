@@ -23,6 +23,8 @@ from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
+    pkg_name = 'quad_bot_controller'
+
     # Declare arguments
     declared_arguments = []
     declared_arguments.append(
@@ -39,9 +41,9 @@ def generate_launch_description():
             " ",
             PathJoinSubstitution(
                 [
-                    FindPackageShare("ros2_control_demo_example_7"),
-                    "urdf",
-                    "r6bot.urdf.xacro",
+                    FindPackageShare(pkg_name),
+                    "ros2_control",
+                    "quad_bot.xacro",
                 ]
             ),
         ]
@@ -50,13 +52,13 @@ def generate_launch_description():
 
     robot_controllers = PathJoinSubstitution(
         [
-            FindPackageShare("ros2_control_demo_example_7"),
+            FindPackageShare(pkg_name),
             "config",
-            "r6bot_controller.yaml",
+            "quad_controller.yaml",
         ]
     )
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare("ros2_control_demo_description"), "r6bot/rviz", "view_robot.rviz"]
+        [FindPackageShare(pkg_name), "config", "display.rviz"]
     )
 
     control_node = Node(
@@ -94,7 +96,7 @@ def generate_launch_description():
     robot_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["r6bot_controller", "-c", "/controller_manager"],
+        arguments=["quad_controller", "-c", "/controller_manager"],
     )
 
     # Delay rviz start after `joint_state_broadcaster`
