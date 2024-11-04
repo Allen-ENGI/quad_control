@@ -51,12 +51,12 @@ endforeach()
 
 ## COMPILE
 # movement control
-# add_executable(send_trajectory reference_generator/send_trajectory.cpp)
+add_executable(send_trajectory reference_generator/send_trajectory.cpp)
 
-# ament_target_dependencies(
-#   send_trajectory PUBLIC
-#   ${REF_GEN_INCLUDE_DEPENDS}
-# )
+ament_target_dependencies(
+  send_trajectory PUBLIC
+  ${REF_GEN_INCLUDE_DEPENDS}
+)
 
 #add the custom libraries
 add_library(
@@ -93,11 +93,12 @@ install(
   DIRECTORY hardware/include/
   DESTINATION include/quad_bot_controller
 )
+# include the movement control file in the lib
+install(
+    TARGETS send_trajectory
+    RUNTIME DESTINATION lib/quad_bot_controller
+)
 
-# install(
-#     TARGETS send_trajectory
-#     RUNTIME DESTINATION lib/quad_bot_controller
-# )
 install(
   DIRECTORY config launch controller hardware ros2_control
   DESTINATION share/${PROJECT_NAME}

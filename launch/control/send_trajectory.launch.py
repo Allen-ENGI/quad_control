@@ -26,9 +26,9 @@ def generate_launch_description():
             " ",
             PathJoinSubstitution(
                 [
-                    FindPackageShare("ros2_control_demo_example_7"),
-                    "urdf",
-                    "r6bot.urdf.xacro",
+                    FindPackageShare("quad_bot_controller"),
+                    "ros2_control",
+                    "quad_bot.xacro",
                 ]
             ),
         ]
@@ -36,7 +36,8 @@ def generate_launch_description():
     robot_description = {"robot_description": robot_description_content}
 
     send_trajectory_node = Node(
-        package="ros2_control_demo_example_7",
+        package="quad_bot_controller",
+        # calling the actual function to send control
         executable="send_trajectory",
         name="send_trajectory_node",
         parameters=[robot_description],
